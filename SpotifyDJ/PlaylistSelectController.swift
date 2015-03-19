@@ -16,34 +16,61 @@ class PlaylistSelectController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var playlistTable: UITableView!
     var session: SPTSession?
     var playlistNames: [String] = []
-    var playlistSnapshots: NSArray!
+    var partialPlaylists: NSArray!
     
-    let kCellIdntifier = "playlistCell"
+    let kCellIdentifier = "playlistCell"
     
-    override func viewDidLoad() {
-        SPTRequest.playlistsForUserInSession(session, callback: { (error: NSError!, obj: AnyObject!) -> Void in
-            if error != nil {
-                println("Error getting playlists \(error)")
-            }
+    override func viewDidAppear(animated: Bool) {
+        if session != nil {
+            SPTRequest.playlistsForUserInSession(session, callback: { (error: NSError!, obj: AnyObject!) -> Void in
+                if error != nil {
+                    println("Error getting playlists \(error)")
+                }
 
-            let snapshots = obj.items as NSArray
-            self.playlistSnapshots = snapshots
-            
-            self.playlistNames = []
-            for snap in snapshots {
-                self.playlistNames.append(snap.name!)
-            }
-            println(self.playlistNames)
-            self.playlistTable.reloadData()
-        })
-
-        
+                let partials = obj.items as NSArray
+                self.partialPlaylists = partials
+                
+                self.playlistNames = []
+                for p in partials {
+                    self.playlistNames.append(p.name!)
+                }
+                self.playlistTable.reloadData()
+            })
+        }
     }
     
-    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let playListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("playlistView") as PlaylistDetailController
+        
+        let partial = self.partialPlaylists[indexPath.row] as SPTPartialPlaylist
+        SPTRequest.requestItemFromPartialObject(partial, withSession: self.session) { (error: NSError!, metadata: AnyObject!) -> Void in
+            playListVC.snapshot = metadata as SPTPlaylistSnapshot
+            playListVC.currentPage = playListVC.snapshot.firstTrackPage
+            playListVC.partialPlaylist = partial
+            playListVC.session = self.session
+            self.navigationController?.pushViewController(playListVC, animated: true)
+        }
+        
+        
+    }
+
+//        SPTRequest.requestItemAtURI(partial.uri, withSession: self.session) { (error: NSError!, playListObj: AnyObject!) -> Void in
+//            println(playListObj)
+//            let snap = playListObj as SPTPlaylistSnapshot
+//            println(snap)
+//            
+//            let playListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("playlistView") as PlaylistDetailController
+//            playListVC.playlistSnapshot = snap
+//            playListVC.partialPlaylist = partial
+//            playListVC.session = self.session
+//            self.navigationController?.pushViewController(playListVC, animated: true)
+//        }
+        
+
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(kCellIdntifier) as UITableViewCell
-        cell.textLabel.text = self.playlistNames[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as UITableViewCell
+        cell.textLabel!.text = self.playlistNames[indexPath.row]
         return cell
     }
     

@@ -11,7 +11,7 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-                            
+
     var window: UIWindow?
     let kClientId = "28080564c21241f895edb9b87fa85c4b"
     let kCallbackURL = "spotifydj://callback"
@@ -53,9 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var loginURL: NSURL
         
         if kTokenSwapURL == "" {
-            loginURL = auth.loginURLForClientId(kClientId, declaredRedirectURL: NSURL(string: kCallbackURL), scopes: [SPTAuthStreamingScope], withResponseType: "token")
+            loginURL = auth.loginURLForClientId(kClientId, declaredRedirectURL: NSURL(string: kCallbackURL), scopes: [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope], withResponseType: "token")
         } else {
-            loginURL = auth.loginURLForClientId(kClientId, declaredRedirectURL: NSURL(string: kCallbackURL), scopes: [SPTAuthStreamingScope])
+            loginURL = auth.loginURLForClientId(kClientId, declaredRedirectURL: NSURL(string: kCallbackURL), scopes: [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope])
         }
         delay(0.1) {
             UIApplication.sharedApplication().openURL(loginURL)
@@ -109,10 +109,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.openLoginPage()
         }
         
-    
-        
-        
-        
 //        var auth = SPTAuth.defaultInstance()
 //        var loginURL = auth.loginURLForClientId(kClientId, declaredRedirectURL: NSURL(string: kCallbackURL), scopes: [SPTAuthStreamingScope])
 //        
@@ -146,57 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
     
-    func playUsingSession(session:SPTSession) {
-        // Create a new player if needed
-        if (self.player == nil) {
-            self.player = SPTAudioStreamingController()
-        }
-        self.player?.loginWithSession(session, callback: { (error) -> Void in
-            if (error != nil) {
-                println("*** Enabling playback got error: \(error)")
-                return
-            } else {
-                
-                // Sucesss! We can now play things
-                
-//                SPTRequest.requestItemAtURI(NSURL(string: "spotify:album:3vGtqTr5he9uQfusQWJ0oC"), withSession: session, callback: { (error, album) -> Void in
-//                    if (error != nil) {
-//                        println("*** Album lookup got error \(error)")
-//                        return
-//                    }
-//                    self.player?.playTrackProvider(album as SPTAlbum, callback: nil)
-//                    
-//                })
-            }
-        })
-        
-    }
-    
-    
-    
-    
-    
-//    func applicationWillResignActive(application: UIApplication!) {
-//        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-//        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-//    }
-//
-//    func applicationDidEnterBackground(application: UIApplication!) {
-//        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-//        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-//    }
-//
-//    func applicationWillEnterForeground(application: UIApplication!) {
-//        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-//    }
-//
-//    func applicationDidBecomeActive(application: UIApplication!) {
-//        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-//    }
-//
-//    func applicationWillTerminate(application: UIApplication!) {
-//        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-//    }
+
 
 
 }

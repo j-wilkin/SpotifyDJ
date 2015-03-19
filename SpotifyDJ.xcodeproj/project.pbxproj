@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E008441C19C6672700A1AD16 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E008441B19C6672700A1AD16 /* Spotify.framework */; };
 		E01C209419B51CDE0001BAA3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E01C209319B51CDE0001BAA3 /* AVFoundation.framework */; };
+		E03C5F621ABA4B0000D7274F /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E03C5F611ABA4B0000D7274F /* Spotify.framework */; };
 		E03D475F19C6644900901CD1 /* PlaylistSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03D475E19C6644900901CD1 /* PlaylistSelectController.swift */; };
+		E0B77E5A1A12FB78004C5DFC /* PlaylistDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B77E591A12FB78004C5DFC /* PlaylistDetailController.swift */; };
+		E0B77E5C1A130A89004C5DFC /* PlaylistDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0B77E5B1A130A89004C5DFC /* PlaylistDetailController.xib */; };
 		E0D291F619906B0A00F0207A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D291F519906B0A00F0207A /* AppDelegate.swift */; };
 		E0D291F819906B0A00F0207A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D291F719906B0A00F0207A /* ViewController.swift */; };
 		E0D291FB19906B0A00F0207A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0D291F919906B0A00F0207A /* Main.storyboard */; };
@@ -28,10 +30,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E008441B19C6672700A1AD16 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Spotify.framework; path = SpotifyDJ/Spotify.framework; sourceTree = "<group>"; };
 		E01C209219B51ADA0001BAA3 /* SpotifyDJ-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpotifyDJ-Bridging-Header.h"; sourceTree = "<group>"; };
 		E01C209319B51CDE0001BAA3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E03C5F611ABA4B0000D7274F /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Spotify.framework; path = "Frameworks/ios-sdk/Spotify.framework"; sourceTree = "<group>"; };
 		E03D475E19C6644900901CD1 /* PlaylistSelectController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistSelectController.swift; sourceTree = "<group>"; };
+		E0B77E591A12FB78004C5DFC /* PlaylistDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistDetailController.swift; sourceTree = "<group>"; };
+		E0B77E5B1A130A89004C5DFC /* PlaylistDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaylistDetailController.xib; sourceTree = "<group>"; };
 		E0D291F019906B0A00F0207A /* SpotifyDJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyDJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0D291F419906B0A00F0207A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0D291F519906B0A00F0207A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,7 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E01C209419B51CDE0001BAA3 /* AVFoundation.framework in Frameworks */,
-				E008441C19C6672700A1AD16 /* Spotify.framework in Frameworks */,
+				E03C5F621ABA4B0000D7274F /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +93,8 @@
 				E0D291F719906B0A00F0207A /* ViewController.swift */,
 				E03D475E19C6644900901CD1 /* PlaylistSelectController.swift */,
 				E0D291F919906B0A00F0207A /* Main.storyboard */,
+				E0B77E591A12FB78004C5DFC /* PlaylistDetailController.swift */,
+				E0B77E5B1A130A89004C5DFC /* PlaylistDetailController.xib */,
 				E0D291FC19906B0A00F0207A /* Images.xcassets */,
 				E0D291F319906B0A00F0207A /* Supporting Files */,
 			);
@@ -124,7 +130,7 @@
 		E0D2921219906B6600F0207A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E008441B19C6672700A1AD16 /* Spotify.framework */,
+				E03C5F611ABA4B0000D7274F /* Spotify.framework */,
 				E01C209319B51CDE0001BAA3 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
@@ -210,6 +216,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B77E5C1A130A89004C5DFC /* PlaylistDetailController.xib in Resources */,
 				E0D291FB19906B0A00F0207A /* Main.storyboard in Resources */,
 				E0D291FD19906B0A00F0207A /* Images.xcassets in Resources */,
 			);
@@ -229,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B77E5A1A12FB78004C5DFC /* PlaylistDetailController.swift in Sources */,
 				E03D475F19C6644900901CD1 /* PlaylistSelectController.swift in Sources */,
 				E0D291F819906B0A00F0207A /* ViewController.swift in Sources */,
 				E0D291F619906B0A00F0207A /* AppDelegate.swift in Sources */,
@@ -350,8 +358,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"/Users/Jasonwil/Downloads/ios-sdk-beta-4",
 					"$(PROJECT_DIR)/SpotifyDJ",
+					"$(PROJECT_DIR)/Frameworks/ios-sdk",
 				);
 				INFOPLIST_FILE = SpotifyDJ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -369,8 +377,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"/Users/Jasonwil/Downloads/ios-sdk-beta-4",
 					"$(PROJECT_DIR)/SpotifyDJ",
+					"$(PROJECT_DIR)/Frameworks/ios-sdk",
 				);
 				INFOPLIST_FILE = SpotifyDJ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
