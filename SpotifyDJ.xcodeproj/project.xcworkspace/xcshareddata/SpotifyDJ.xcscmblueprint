@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "082E5804F88E34ADA3397321B8855D5728C4C04C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "2F24C7ABC659AFF86BEF70BD7DCAF0EF1B9AD29C" : 0,
+    "082E5804F88E34ADA3397321B8855D5728C4C04C" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6F23C608-8547-427C-B3DF-40552E432A7C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "2F24C7ABC659AFF86BEF70BD7DCAF0EF1B9AD29C" : "SpotifyDJ\/Frameworks\/ios-sdk",
+    "082E5804F88E34ADA3397321B8855D5728C4C04C" : "SpotifyDJ"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SpotifyDJ",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SpotifyDJ.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/j-wilkin\/SpotifyDJ.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "082E5804F88E34ADA3397321B8855D5728C4C04C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/spotify\/ios-sdk",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2F24C7ABC659AFF86BEF70BD7DCAF0EF1B9AD29C"
+    }
+  ]
+}

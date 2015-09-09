@@ -7,22 +7,18 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>6F23C608-8547-427C-B3DF-40552E432A7C</string>
 	<key>IDESourceControlProjectName</key>
-	<string>SpotifyDJ</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>082E5804F88E34ADA3397321B8855D5728C4C04C</key>
 		<string>https://github.com/j-wilkin/SpotifyDJ.git</string>
-		<key>2F24C7ABC659AFF86BEF70BD7DCAF0EF1B9AD29C</key>
-		<string>https://github.com/spotify/ios-sdk</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SpotifyDJ.xcodeproj</string>
+	<string>SpotifyDJ.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>082E5804F88E34ADA3397321B8855D5728C4C04C</key>
 		<string>../..</string>
-		<key>2F24C7ABC659AFF86BEF70BD7DCAF0EF1B9AD29C</key>
-		<string>../../Frameworks/ios-sdk</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/j-wilkin/SpotifyDJ.git</string>
@@ -32,14 +28,6 @@
 	<string>082E5804F88E34ADA3397321B8855D5728C4C04C</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2F24C7ABC659AFF86BEF70BD7DCAF0EF1B9AD29C</string>
-			<key>IDESourceControlWCCName</key>
-			<string>ios-sdk</string>
-		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

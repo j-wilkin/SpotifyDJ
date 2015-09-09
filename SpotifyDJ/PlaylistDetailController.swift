@@ -58,7 +58,7 @@ class PlaylistDetailController: UIViewController, UITableViewDataSource, UITable
                 self.player.setIsPlaying(false, callback: nil)
                 self.currentTrackIndex = nil
         } else {
-            let track = self.currentPage.items[indexPath.row] as SPTPlaylistTrack
+            let track = self.currentPage.items[indexPath.row] as! SPTPlaylistTrack
             self.player.playURI(track.playableUri, callback: nil)
             self.currentTrackIndex = indexPath
 
@@ -68,10 +68,10 @@ class PlaylistDetailController: UIViewController, UITableViewDataSource, UITable
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as UITableViewCell
-        let partialTrack = self.currentPage.items[indexPath.row] as SPTPartialTrack
+        let cell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as! UITableViewCell
+        let partialTrack = self.currentPage.items[indexPath.row] as! SPTPartialTrack
         SPTRequest.requestItemFromPartialObject(partialTrack, withSession: self.session) { (error: NSError!, fullObj: AnyObject!) -> Void in
-            var fullTrack = fullObj as SPTTrack
+            var fullTrack = fullObj as! SPTTrack
             
         }
         

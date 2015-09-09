@@ -40,11 +40,11 @@ class PlaylistSelectController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let playListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("playlistView") as PlaylistDetailController
+        let playListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("playlistView") as! PlaylistDetailController
         
-        let partial = self.partialPlaylists[indexPath.row] as SPTPartialPlaylist
+        let partial = self.partialPlaylists[indexPath.row] as! SPTPartialPlaylist
         SPTRequest.requestItemFromPartialObject(partial, withSession: self.session) { (error: NSError!, metadata: AnyObject!) -> Void in
-            playListVC.snapshot = metadata as SPTPlaylistSnapshot
+            playListVC.snapshot = metadata as! SPTPlaylistSnapshot
             playListVC.currentPage = playListVC.snapshot.firstTrackPage
             playListVC.partialPlaylist = partial
             playListVC.session = self.session
@@ -69,7 +69,7 @@ class PlaylistSelectController: UIViewController, UITableViewDataSource, UITable
 
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as! UITableViewCell
         cell.textLabel!.text = self.playlistNames[indexPath.row]
         return cell
     }
