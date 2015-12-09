@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NowPlayingController: UIViewController {
+class NowPlayingController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     
     
     @IBOutlet weak var songLabel: UILabel!
@@ -28,26 +28,30 @@ class NowPlayingController: UIViewController {
                     // Something went wrong
                 }
             })
-            playbackToggleButton.titleLabel?.text = "Play"
+            playbackToggleButton.setTitle("Play", forState: .Normal)
         } else {
             GlobalPlayer.sharedInstance.setIsPlaying(true, callback: { (error: NSError!) -> Void in
                 if error != nil {
                     // Something went wrong
                 }
             })
-            playbackToggleButton.titleLabel?.text = "Pause"
+            playbackToggleButton.setTitle("Pause", forState: .Normal)
         }
     }
     
+    var session: SPTSession?
     
-    func setNowPlayingInfo() {
-//        if let currentTrack = GlobalPlayer.sharedInstance.[SPTAudioStreamingMetadataTrackName] as? String
-//            artistLabel.text = currentTrack[SPTAudioStreamingMetadataArtistName] as? String
-//            albumLabel.text = currentTrack[SPTAudioStreamingMetadataAlbumName] as? String
-//            
-//            //GlobalPlayer.sharedInstance.
-//            
-//        }
+    func setNowPlayingInfo(trackMetadata: [NSObject : AnyObject]!) {
+        artistLabel.text = trackMetadata[SPTAudioStreamingMetadataArtistName] as? String
+        albumLabel.text = trackMetadata[SPTAudioStreamingMetadataAlbumName] as? String
+        songLabel.text = trackMetadata[SPTAudioStreamingMetadataTrackName] as? String
+        
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.playbackToggleButton.setTitle("Pause", forState: .Normal)
     }
     
     
@@ -65,7 +69,15 @@ class NowPlayingController: UIViewController {
     }
 
     
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangeToTrack trackMetadata: [NSObject : AnyObject]!) {
+        setNowPlayingInfo(trackMetadata)
+    }
     
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
+        if isPlaying {
+            setNowPlayingInfo(GlobalPlayer.sharedInstance.currentTrackMetadata)
+        }
+    }
 
 }
 

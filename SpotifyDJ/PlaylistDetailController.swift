@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class PlaylistDetailController: UIViewController, UITableViewDataSource, UITableViewDelegate, SPTAudioStreamingPlaybackDelegate {
+class PlaylistDetailController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     @IBOutlet weak var trackTable: UITableView!
@@ -33,7 +33,6 @@ class PlaylistDetailController: UIViewController, UITableViewDataSource, UITable
     }
     
     func createPlayer() {
-        GlobalPlayer.sharedInstance.playbackDelegate = self
         GlobalPlayer.sharedInstance.loginWithSession(self.session!, callback: { (error: NSError!) -> Void in
             if error != nil {
                 print("Playback error: \(error.localizedDescription)")
@@ -52,7 +51,11 @@ class PlaylistDetailController: UIViewController, UITableViewDataSource, UITable
             let track = self.currentPage.items[indexPath.row] as! SPTPlaylistTrack
             GlobalPlayer.sharedInstance.playURI(track.playableUri, callback: nil)
             self.currentTrackIndex = indexPath
-
+            
+            let nowPlayingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("nowPlayingView") as! NowPlayingController
+            GlobalPlayer.sharedInstance.playbackDelegate = nowPlayingController
+            nowPlayingController.session = self.session
+            self.navigationController?.pushViewController(nowPlayingController, animated: true)
         }
         tableView.cellForRowAtIndexPath(indexPath)?.setSelected(false, animated: true)
     }
