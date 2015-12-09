@@ -41,13 +41,13 @@ class NowPlayingController: UIViewController {
     
     
     func setNowPlayingInfo() {
-        if let currentTrack = GlobalPlayer.sharedInstance.[SPTAudioStreamingMetadataTrackName] as? String
-            artistLabel.text = currentTrack[SPTAudioStreamingMetadataArtistName] as? String
-            albumLabel.text = currentTrack[SPTAudioStreamingMetadataAlbumName] as? String
-            
-            GlobalPlayer.sharedInstance.
-            
-        }
+//        if let currentTrack = GlobalPlayer.sharedInstance.[SPTAudioStreamingMetadataTrackName] as? String
+//            artistLabel.text = currentTrack[SPTAudioStreamingMetadataArtistName] as? String
+//            albumLabel.text = currentTrack[SPTAudioStreamingMetadataAlbumName] as? String
+//            
+//            //GlobalPlayer.sharedInstance.
+//            
+//        }
     }
     
     
