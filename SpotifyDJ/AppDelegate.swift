@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -76,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let auth = SPTAuth.defaultInstance()
         auth.renewSession(session, withServiceEndpointAtURL: NSURL(string: kTokenRefreshServiceURL)) { (error: NSError?, sesh: SPTSession?) -> Void in
             if error != nil {
-                println("ERROR renewing session: \(error)")
+                print("ERROR renewing session: \(error)")
                 return
             }
             self.enableAudioPlaybackWithSession(sesh!)
@@ -88,7 +87,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-
         let seshData: NSData? = NSUserDefaults.standardUserDefaults().objectForKey(kSessionUserDefaultsKey) as? NSData
         
         var session: SPTSession? = nil
@@ -109,27 +107,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.openLoginPage()
         }
         
-//        var auth = SPTAuth.defaultInstance()
-//        var loginURL = auth.loginURLForClientId(kClientId, declaredRedirectURL: NSURL(string: kCallbackURL), scopes: [SPTAuthStreamingScope])
-//        
-//        // Opening a URL in Safari close to application launch may trigger
-//        // an iOS bug, so we wait a bit before doing so.
-//        delay(0.1) {
-//            application.openURL(loginURL)
-//            return
-//        }
-        
         return true
     }
 
     
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         // Ask SPTAuth if the URL given is a Spotify authentication callback
         if (SPTAuth.defaultInstance().canHandleURL(url, withDeclaredRedirectURL: NSURL(string:kCallbackURL))) {
             SPTAuth.defaultInstance().handleAuthCallbackWithTriggeredAuthURL(url, tokenSwapServiceEndpointAtURL: NSURL(string: kTokenSwapURL), callback: { (error, session) -> Void in
                 if (error != nil) {
-                    println("*** Auth error: \(error)")
+                    print("*** Auth error: \(error)")
                     return
                 }
                 self.enableAudioPlaybackWithSession(session)

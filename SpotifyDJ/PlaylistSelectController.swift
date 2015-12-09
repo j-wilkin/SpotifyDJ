@@ -22,16 +22,17 @@ class PlaylistSelectController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidAppear(animated: Bool) {
         if session != nil {
+        
+            
             SPTRequest.playlistsForUserInSession(session, callback: { (error: NSError!, obj: AnyObject!) -> Void in
                 if error != nil {
-                    println("Error getting playlists \(error)")
+                    print("Error getting playlists \(error)")
                 }
-
-                let partials = obj.items as NSArray
-                self.partialPlaylists = partials
                 
-                self.playlistNames = []
-                for p in partials {
+                let playlistList = obj as! SPTPlaylistList
+                self.partialPlaylists =  playlistList.items
+
+                for p in self.partialPlaylists {
                     self.playlistNames.append(p.name!)
                 }
                 self.playlistTable.reloadData()
@@ -54,24 +55,13 @@ class PlaylistSelectController: UIViewController, UITableViewDataSource, UITable
         
     }
 
-//        SPTRequest.requestItemAtURI(partial.uri, withSession: self.session) { (error: NSError!, playListObj: AnyObject!) -> Void in
-//            println(playListObj)
-//            let snap = playListObj as SPTPlaylistSnapshot
-//            println(snap)
-//            
-//            let playListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("playlistView") as PlaylistDetailController
-//            playListVC.playlistSnapshot = snap
-//            playListVC.partialPlaylist = partial
-//            playListVC.session = self.session
-//            self.navigationController?.pushViewController(playListVC, animated: true)
-//        }
-        
-
-
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as! UITableViewCell
-        cell.textLabel!.text = self.playlistNames[indexPath.row]
-        return cell
+        if let cell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) {
+            cell.textLabel!.text = self.playlistNames[indexPath.row]
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
     
     

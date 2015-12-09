@@ -19,7 +19,6 @@ class PlaylistDetailController: UIViewController, UITableViewDataSource, UITable
     var partialPlaylist: SPTPartialPlaylist!
     var snapshot: SPTPlaylistSnapshot!
     var currentPage: SPTListPage!
-    var player: SPTAudioStreamingController!
     
     var currentTrackIndex: NSIndexPath?
     
@@ -34,32 +33,24 @@ class PlaylistDetailController: UIViewController, UITableViewDataSource, UITable
     }
     
     func createPlayer() {
-        self.player = SPTAudioStreamingController()
-        self.player.playbackDelegate = self
-        
-        self.player.loginWithSession(self.session!, callback: { (error: NSError!) -> Void in
+        GlobalPlayer.sharedInstance.playbackDelegate = self
+        GlobalPlayer.sharedInstance.loginWithSession(self.session!, callback: { (error: NSError!) -> Void in
             if error != nil {
-                println("Playback error: \(error.localizedDescription)")
+                print("Playback error: \(error.localizedDescription)")
             }
         })
         
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        if self.player.isPlaying {
-            self.player.setIsPlaying(false, callback: nil)
-        }
     }
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if (self.currentTrackIndex != nil && self.currentTrackIndex == indexPath) {
-                self.player.setIsPlaying(false, callback: nil)
+                GlobalPlayer.sharedInstance.setIsPlaying(false, callback: nil)
                 self.currentTrackIndex = nil
         } else {
             let track = self.currentPage.items[indexPath.row] as! SPTPlaylistTrack
-            self.player.playURI(track.playableUri, callback: nil)
+            GlobalPlayer.sharedInstance.playURI(track.playableUri, callback: nil)
             self.currentTrackIndex = indexPath
 
         }
@@ -68,16 +59,14 @@ class PlaylistDetailController: UIViewController, UITableViewDataSource, UITable
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) as! UITableViewCell
-        let partialTrack = self.currentPage.items[indexPath.row] as! SPTPartialTrack
-        SPTRequest.requestItemFromPartialObject(partialTrack, withSession: self.session) { (error: NSError!, fullObj: AnyObject!) -> Void in
-            var fullTrack = fullObj as! SPTTrack
-            
+        if let cell = tableView.dequeueReusableCellWithIdentifier(kCellIdentifier) {
+            let partialTrack = self.currentPage.items[indexPath.row] as! SPTPartialTrack
+            cell.textLabel!.text = partialTrack.name
+            return cell
+        } else {
+            return UITableViewCell()
         }
         
-        cell.textLabel!.text = partialTrack.name
-        return cell
-
     }
     
     
